@@ -1,0 +1,249 @@
+.anime-hero {
+    position: relative;
+    width: 100%;
+    min-height: 650px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+}
+
+.anime-hero-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75%;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.anime-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 60%, #0E0E0E 100%);
+}
+
+.anime-hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.anime-hero-poster {
+    flex-shrink: 0;
+    width: 340px;
+    height: 453px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+    transform: translateY(0);
+}
+
+.anime-hero-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.anime-hero-info {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.share-btn {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.share-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #000;
+}
+
+.share-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.anime-hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.anime-hero-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.anime-hero-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #FFD700;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.anime-hero-rating svg {
+    width: 20px;
+    height: 20px;
+}
+
+.anime-hero-badges {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.anime-hero-description {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 32px 0;
+    max-width: 650px;
+}
+
+.anime-hero-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-continue,
+.btn-watch-later {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 111px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-continue {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-continue:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.btn-continue svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-watch-later {
+    background-color: #A30000;
+    color: #fff;
+}
+
+.btn-watch-later:hover {
+    background-color: #8B0000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(163, 0, 0, 0.4);
+}
+
+.btn-watch-later svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    .anime-hero {
+        min-height: 550px;
+        align-items: center;
+        padding-bottom: 40px;
+    }
+
+    .anime-hero-backdrop {
+        height: 60%;
+    }
+
+    .anime-hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .anime-hero-poster {
+        width: 220px;
+        transform: translateY(-30px);
+    }
+
+    .anime-hero-info {
+        padding-bottom: 0;
+    }
+
+    .anime-hero-title-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .anime-hero-title {
+        font-size: 32px;
+    }
+
+    .anime-hero-badges {
+        justify-content: center;
+    }
+
+    .anime-hero-description {
+        max-width: 100%;
+    }
+
+    .anime-hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-continue,
+    .btn-watch-later {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .share-btn {
+        top: -100px;
+        right: 10px;
+    }
+}

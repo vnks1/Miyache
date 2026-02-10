@@ -1,0 +1,160 @@
+.anime-card {
+    display: block;
+    width: 290px;
+    cursor: pointer;
+    transition: transform var(--transition-normal);
+    text-decoration: none;
+    color: inherit;
+}
+
+.anime-card:hover {
+    transform: translateY(-8px);
+}
+
+.anime-card-image {
+    position: relative;
+    width: 290px;
+    height: 346px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-secondary);
+}
+
+.anime-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.anime-card:hover .anime-card-image img {
+    transform: scale(1.05);
+}
+
+.bookmark-btn {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    opacity: 0;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(4px);
+}
+
+.bookmark-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.anime-card:hover .bookmark-btn {
+    opacity: 1;
+}
+
+.bookmark-btn:hover {
+    background: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+.bookmark-btn.bookmarked {
+    opacity: 1;
+    background: var(--accent-blue);
+    color: white;
+}
+
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.anime-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-btn {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--bg-primary);
+    border-radius: 50%;
+    transition: transform var(--transition-fast);
+}
+
+.play-btn svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+}
+
+.anime-card:hover .play-btn {
+    transform: scale(1.1);
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-blue);
+    border-radius: 0 2px 2px 0;
+    transition: width var(--transition-normal);
+}
+
+.anime-card-info {
+    padding: var(--spacing-sm) 0;
+}
+
+.anime-card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.anime-card-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.meta-separator {
+    margin: 0 2px;
+}
+
+.anime-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.anime-card-rating svg {
+    width: 12px;
+    height: 12px;
+    fill: #fbbf24;
+}

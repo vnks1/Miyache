@@ -1,0 +1,61 @@
+.episode-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 24px;
+}
+
+@media (max-width: 1200px) {
+    .episode-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .episode-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .episode-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.episodes-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.episodes-empty p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.load-more-btn {
+    padding: 14px 40px;
+    background-color: #0E0E0E;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 111px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
