@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import logoSvg from '../assets/logo.svg';
 
 function Header({ isLoggedIn = false }) {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -47,18 +50,13 @@ function Header({ isLoggedIn = false }) {
         <div className="header-right">
           {isLoggedIn ? (
             <>
-              <button className="icon-btn" aria-label="Notifications">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                </svg>
+              <button
+                onClick={() => navigate('/login')}
+                style={{ backgroundColor: '#fff', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '8px', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}
+              >
+                Login
               </button>
-              <button className="icon-btn profile-btn" aria-label="Profile">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M20 21a8 8 0 1 0-16 0" />
-                </svg>
-              </button>
+              <button style={{ backgroundColor: '#27272a', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', fontSize: '14px', fontWeight: 500, cursor: 'pointer' }}>Criar conta</button>
             </>
           ) : (
             <>

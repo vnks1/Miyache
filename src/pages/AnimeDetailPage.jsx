@@ -106,9 +106,9 @@ function AnimeDetailPage() {
                 <AnimeHero anime={animeDetails} />
 
                 <section className="episodes-section container">
-                    <div className="episodes-header">
+                    <div className="flex justify-between items-center mb-4">
                         <h2 className="section-title">Episódios</h2>
-                        {regularSeasons.length > 1 && (
+                        {regularSeasons.length >= 1 && (
                             <SeasonSelector
                                 seasons={regularSeasons}
                                 selectedSeason={selectedSeason}

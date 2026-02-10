@@ -28,10 +28,6 @@ function AnimeHero({ anime }) {
                 </div>
 
                 <div className="anime-hero-info">
-                    <div className="hero-week-highlight">
-                        DESTAQUE DA SEMANA
-                    </div>
-
                     <button className="share-btn" aria-label="Compartilhar">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <circle cx="18" cy="5" r="3" />
