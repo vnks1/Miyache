@@ -1,22 +1,16 @@
 import AnimeCard from './AnimeCard';
-import './AnimeSection.css';
 
 function AnimeSection({ title, animes, showProgress = false }) {
     return (
-        <section className="anime-section">
-            <div className="container">
-                <div className="section-header">
-                    <h2 className="section-title">{title}</h2>
-                    <a href="#" className="section-link">
-                        Ver todos
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <polyline points="9 18 15 12 9 6" />
-                        </svg>
-                    </a>
+        <section className="py-8">
+            <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-12 xl:px-20">
+                <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl max-sm:text-base font-bold text-text-primary">{title}</h2>
+
                 </div>
             </div>
 
-            <div className="anime-grid">
+            <div className="grid grid-cols-[repeat(4,290px)] max-xl:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-2 gap-8 max-md:gap-4 max-sm:gap-2 max-w-[1440px] mx-auto px-4 md:px-6 lg:px-12 xl:px-20 justify-between">
                 {animes.map((anime) => (
                     <AnimeCard key={anime.id} anime={anime} showProgress={showProgress} />
                 ))}

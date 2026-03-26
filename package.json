@@ -5,14 +5,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:server": "cd server && npm run dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\" --names \"front,server\" --prefix-colors \"cyan,yellow\"",
     "build": "vite build",
+    "build:server": "cd server && npm run build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup": "npm install && cd server && npm install && npx prisma generate && npx prisma migrate dev",
+    "prisma:studio": "cd server && npx prisma studio"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "@tanstack/react-query": "^5.22.2",
+    "@tanstack/react-query-devtools": "^5.22.2",
+    "axios": "^1.6.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.0"
+    "react-hook-form": "^7.50.1",
+    "react-router-dom": "^7.13.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -20,11 +31,13 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^8.2.2",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "tailwindcss": "^4.1.18",
+    "typescript": "^5.3.3",
     "vite": "^7.3.1"
   }
 }

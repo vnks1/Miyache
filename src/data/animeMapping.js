@@ -1,7 +1,7 @@
 // Mapping of local anime titles to TMDB TV show IDs
 export const animeToTmdbId = {
     'Bleach TYWB': 30984,
-    'FMA: Brotherhood': 5114,
+    'Fullmetal Alchemist: Brotherhood': 5114,
     'Jujutsu Kaisen': 95479,
     'Demon Slayer': 85937,
     'Attack on Titan': 1429,
