@@ -320,3 +320,5 @@ ISC
 ---
 
 **Desenvolvido com ❤️ para gerenciamento profissional de animes**
+Miyache
+A new anime tracker
