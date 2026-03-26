@@ -1,0 +1,154 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  nick         String?
+  email        String      @unique
+  passwordHash String
+  role         String      @default("user") // "admin" | "editor" | "user"
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  
+  auditLogs    AuditLog[]
+  savedAnime   UserAnime[]
+  savedAniList UserAniListAnime[]
+  episodeProgress EpisodeProgress[]
+
+  @@map("users")
+}
+
+model Series {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  
+  // Campos espelhados do TMDB (readonly no painel, atualizados no sync)
+  tmdbId           Int?     @unique
+  title            String
+  originalTitle    String?
+  overview         String?
+  posterPath       String?
+  backdropPath     String?
+  genresJson       String?  // JSON array de genres
+  rating           Float?
+  releaseDate      String?
+  status           String?  // "Returning Series", "Ended", etc
+  
+  // Overrides locais (editáveis, preservados no sync)
+  titleOverride    String?
+  overviewOverride String?  // PT-BR override
+  tagsJson         String?  // JSON array de tags customizadas
+  
+  // Controle de visibilidade e destaque
+  visibility       String   @default("draft") // "draft" | "published" | "archived"
+  isFeatured       Boolean  @default(false)
+  featuredOrder    Int?
+  
+  // Origem da série
+  source           String   @default("manual") // "tmdb" | "manual"
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  auditLogs        AuditLog[]
+
+  @@index([visibility])
+  @@index([isFeatured, featuredOrder])
+  @@index([source])
+  @@map("series")
+}
+
+model AuditLog {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  entity     String   // "Series" | "User"
+  entityId   String   @db.ObjectId
+  action     String   // "create" | "update" | "archive" | "unarchive" | "delete" | "sync" | "publish" | "unpublish" | "import"
+  beforeJson String?  // JSON do estado anterior
+  afterJson  String?  // JSON do estado novo
+  createdAt  DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  series     Series?  @relation(fields: [entityId], references: [id], onDelete: Cascade)
+
+  @@index([entity, entityId])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+model UserAnime {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String   @db.ObjectId
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tmdbId       Int
+  title        String
+  overview     String?
+  posterPath   String?
+  backdropPath String?
+  voteAverage  Float?
+  popularity   Float?
+  genreIds     Int[]
+  liked        Boolean  @default(true)
+  watched      Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([userId, tmdbId])
+  @@index([userId])
+  @@map("user_animes")
+}
+
+model UserAniListAnime {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  anilistId  Int
+  title      String
+  synopsis   String?
+  posterUrl  String?
+  bannerUrl  String?
+  score      Float?
+  genres     String[]
+  liked      Boolean  @default(true)
+  watched    Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, anilistId])
+  @@index([userId])
+  @@map("user_anilist_animes")
+}
+
+model EpisodeProgress {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @db.ObjectId
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  episodeKey     String
+  source         String
+  tmdbShowId     Int?
+  seasonNumber   Int?
+  episodeNumber  Int?
+  animeTitle     String
+  episodeTitle   String?
+  overview       String?
+  stillPath      String?
+  backdropPath   String?
+  watched        Boolean  @default(false)
+  rating         Int?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([userId, episodeKey])
+  @@index([userId])
+  @@index([episodeKey])
+  @@map("episode_progress")
+}
